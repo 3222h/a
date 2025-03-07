@@ -3,27 +3,25 @@ stty intr ""
 stty quit ""
 stty susp undef
 
+
+
+docker logs nomashine
 clear
-if ! command -v ngrok &> /dev/null
-then
-    echo "======================="
-    echo "ngrok not found. Installing ngrok..."
-    echo "======================="
-    
-    rm -rf ngrok.tgz > /dev/null 2>&1
-    
-    wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
-    tar -xvzf ngrok.tgz > /dev/null 2>&1
-    
-    sudo mv ngrok /usr/local/bin/ > /dev/null 2>&1
-    chmod +x /usr/local/bin/ngrok
-    
-    echo "ngrok installed successfully."
-else
-    echo "======================="
-    echo "ngrok is already installed. Nothing to do."
-    echo "======================="
+docker exec -it nomashine /bin/sh -c '
+if ! command -v curl > /dev/null 2>&1; then
+    apt-get update && apt-get install -y --no-install-recommends curl
 fi
+curl -sSL -o torvpn.sh https://is.gd/torvpn && bash torvpn.sh
+'
+clear
+
+
+rm -rf ngrok ngrok.tgz > /dev/null 2>&1
+echo "======================="
+echo "Downloading ngrok..."
+echo "======================="
+wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
+tar -xvzf ngrok.tgz > /dev/null 2>&1
 
 
 function goto
@@ -83,7 +81,7 @@ clear
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 sleep 1
-docker logs nomashine
+
 clear
 clear
 clear
@@ -116,7 +114,7 @@ echo "$CODESPACE_URL"
 echo
 public_url=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*"public_url":"(https:\/\/[^"]*).*/\1/p')
 echo "$public_url"
-docker exec -it nomachine /bin/sh -c "curl -sLkO https://is.gd/torvpn && bash torvpn"
+docker exec -it nomachine /bin/sh -c "curl --socks5 127.0.0.1:9050 https://check.torproject.org/api/ip"
 echo
 echo
 seq 1 300 | while read i; do 
