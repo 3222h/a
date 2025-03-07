@@ -4,12 +4,26 @@ stty quit ""
 stty susp undef
 
 clear
-rm -rf ngrok.tgz > /dev/null 2>&1
-echo "======================="
-echo "Downloading ngrok..."
-echo "======================="
-wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
-tar -xvzf ngrok.tgz > /dev/null 2>&1
+if ! command -v ngrok &> /dev/null
+then
+    echo "======================="
+    echo "ngrok not found. Installing ngrok..."
+    echo "======================="
+    
+    rm -rf ngrok.tgz > /dev/null 2>&1
+    
+    wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
+    tar -xvzf ngrok.tgz > /dev/null 2>&1
+    
+    sudo mv ngrok /usr/local/bin/ > /dev/null 2>&1
+    chmod +x /usr/local/bin/ngrok
+    
+    echo "ngrok installed successfully."
+else
+    echo "======================="
+    echo "ngrok is already installed. Nothing to do."
+    echo "======================="
+fi
 
 
 function goto
