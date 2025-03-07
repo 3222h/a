@@ -118,36 +118,33 @@ echo
 docker exec -it nomashine /bin/sh -c "curl --socks5 127.0.0.1:9050 https://check.torproject.org/api/ip"
 echo
 echo
-seq 1 300 | while read i; do 
-    echo -en "\r Running .     $i s /300 s"; sleep 0.1
-    echo -en "\r Running ..    $i s /300 s"; sleep 0.1
-    echo -en "\r Running ...   $i s /300 s"; sleep 0.1
-    echo -en "\r Running ....  $i s /300 s"; sleep 0.1
-    echo -en "\r Running ..... $i s /300 s"; sleep 0.1
-    echo -en "\r Running     . $i s /300 s"; sleep 0.1
-    echo -en "\r Running  .... $i s /300 s"; sleep 0.1
-    echo -en "\r Running   ... $i s /300 s"; sleep 0.1
-    echo -en "\r Running    .. $i s /300 s"; sleep 0.1
-    echo -en "\r Running     . $i s /300 s"; sleep 0.1
+seq 1 900 | while read i; do 
+    echo -en "\r Running .     $i s /900 s"; sleep 0.1
+    echo -en "\r Running ..    $i s /900 s"; sleep 0.1
+    echo -en "\r Running ...   $i s /900 s"; sleep 0.1
+    echo -en "\r Running ....  $i s /900 s"; sleep 0.1
+    echo -en "\r Running ..... $i s /900 s"; sleep 0.1
+    echo -en "\r Running     . $i s /900 s"; sleep 0.1
+    echo -en "\r Running  .... $i s /900 s"; sleep 0.1
+    echo -en "\r Running   ... $i s /900 s"; sleep 0.1
+    echo -en "\r Running    .. $i s /900 s"; sleep 0.1
+    echo -en "\r Running     . $i s /900 s"; sleep 0.1
 done
-
-
-
 
 pkill ngrok
 clear
 
-seq 1 3600 | while read i; do 
-    echo -en "\r Running .     $i s /3600 s"; sleep 0.1
-    echo -en "\r Running ..    $i s /3600 s"; sleep 0.1
-    echo -en "\r Running ...   $i s /3600 s"; sleep 0.1
-    echo -en "\r Running ....  $i s /3600 s"; sleep 0.1
-    echo -en "\r Running ..... $i s /3600 s"; sleep 0.1
-    echo -en "\r Running     . $i s /3600 s"; sleep 0.1
-    echo -en "\r Running  .... $i s /3600 s"; sleep 0.1
-    echo -en "\r Running   ... $i s /3600 s"; sleep 0.1
-    echo -en "\r Running    .. $i s /3600 s"; sleep 0.1
-    echo -en "\r Running     . $i s /3600 s"; sleep 0.1
+seq 1 3000 | while read i; do 
+    echo -en "\r Running .     $i s /3000 s"; sleep 0.1
+    echo -en "\r Running ..    $i s /3000 s"; sleep 0.1
+    echo -en "\r Running ...   $i s /3000 s"; sleep 0.1
+    echo -en "\r Running ....  $i s /3000 s"; sleep 0.1
+    echo -en "\r Running ..... $i s /3000 s"; sleep 0.1
+    echo -en "\r Running     . $i s /3000 s"; sleep 0.1
+    echo -en "\r Running  .... $i s /3000 s"; sleep 0.1
+    echo -en "\r Running   ... $i s /3000 s"; sleep 0.1
+    echo -en "\r Running    .. $i s /3000 s"; sleep 0.1
+    echo -en "\r Running     . $i s /3000 s"; sleep 0.1
 done
 
 
