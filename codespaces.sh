@@ -114,6 +114,7 @@ echo "$CODESPACE_URL"
 echo
 public_url=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*"public_url":"(https:\/\/[^"]*).*/\1/p')
 echo "$public_url"
+echo
 docker exec -it nomashine /bin/sh -c "curl --socks5 127.0.0.1:9050 https://check.torproject.org/api/ip"
 echo
 echo
